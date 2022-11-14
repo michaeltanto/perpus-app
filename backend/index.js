@@ -14,5 +14,5 @@ server.get("/", (req, res) => {
 
 server.listen( port, () =>{
     // db.sequelize({alter:true})
-    console.log(`Succes Running at : ${port}`)
+    console.log(`Succes Running at PORT: ${port}`)
 })
