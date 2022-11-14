@@ -7,8 +7,11 @@ server.use(express.json())
 
 
 server.get("/", (req, res) => {
+
     res.status(200).send("Welcome to My API")
 })
+
+console.log("register")
 
 
 
