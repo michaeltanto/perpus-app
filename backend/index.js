@@ -1,21 +1,18 @@
-const express = require("express")
-const port = 3000
-const server = express()
-const db = require("./models")
+const express = require("express");
+const port = 3000;
+const server = express();
+const db = require("./models");
+const cors = require("cors")
 
-server.use(express.json())
-
-
-server.get("/", (req, res) => {
-
-    res.status(200).send("Welcome to My API")
-})
-
-console.log("register")
+server.use(express.json());
+server.use(cors());
 
 
+const {bookRouters} = require("./routers");
 
-server.listen( port, () =>{
-    // db.sequelize({alter:true})
-    console.log(`Succes Running at PORT: ${port}`)
-})
+server.use("/book", bookRouters);
+
+server.listen(port, () => {
+  // db.sequelize.sync({alter:true})
+  console.log(`Success Running at PORT: ${port}`);
+});
