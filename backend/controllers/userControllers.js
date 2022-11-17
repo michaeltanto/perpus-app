@@ -9,7 +9,7 @@ const handlebars = require("handlebars");
 
 module.exports = {
 
-  register: async (req, res) => {
+register: async (req, res) => {
     try{
         const { NIM, Username, Email, Password, Password_confirmation } =
         req.body;

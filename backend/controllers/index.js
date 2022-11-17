@@ -1,4 +1,4 @@
-const bookControllers = require("../controlllers/bookController");
+const bookControllers = require("./bookController");
 const userControllers = require("./userControllers")
 
 module.exports = {

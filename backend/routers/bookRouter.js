@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { bookControllers } = require("../controlllers");
+const { bookControllers } = require("../controllers");
 const { multerUpload } = require("../helpers/multer");
 
 router.post("/create", bookControllers.create);
