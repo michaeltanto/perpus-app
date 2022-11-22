@@ -1,8 +1,10 @@
-const userRoutes = require("./userRouters")
+const userRouters = require("./userRouters")
 const bookRouters = require("./bookRouter");
+const adminRouters = require("./adminRouters")
 
 module.exports = {
-    userRoutes,
-    bookRouters
+    userRouters,
+    bookRouters,
+    adminRouters,
 }
 
