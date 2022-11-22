@@ -16,8 +16,6 @@ register: async (req, res) => {
 
       if (Password !== Password_confirmation) throw "password lu salah";
 
-      if (Password.length < 8) throw "Password min 8 character";
-
       const salt = await bcrypt.genSalt(10);
 
       const hashPass = await bcrypt.hash(Password, salt);
@@ -59,8 +57,8 @@ login: async (req, res) => {
 
         const isNimExist = await user.findOne({
             where: {
-                NIM, 
-                // : data ? data : "",
+                NIM
+                //  data ? data : "",
                 // Username : data ? data : "",
                 // Email : data ? data : "",
 
@@ -71,11 +69,13 @@ login: async (req, res) => {
         console.log(isNimExist)
 
         if(!isNimExist) throw "NIM not Found";
+        
         console.log(isNimExist.Password)
         const isValid = await bcrypt.compare(Password, isNimExist.Password);
 
         if(!isValid) throw "NIM and Password Incorrect";
-
+        
+        
         // const payload = {id: isNimExist.id, isAdmin: isNimExist.isAdmin}
         const token = jwt.sign(
             { NIM: isNimExist.NIM, id: isNimExist.id },
@@ -107,7 +107,7 @@ keepLogin: async (req, res) => {
         });
   
         res.status(200).send({
-          id: result[0].id,
+          // id: result[0].id,
           NIM: result[0].NIM,
         });
       } catch (err) {
