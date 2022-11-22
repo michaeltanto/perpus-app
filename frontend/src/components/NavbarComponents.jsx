@@ -132,7 +132,6 @@ const NavbarComp = () => {
                   colorScheme={"teal"}
                   size={"sm"}
                   mr={4}
-                  leftIcon={<AddIcon />}
                 >
                   LogIn
                 </Button>
@@ -143,7 +142,6 @@ const NavbarComp = () => {
                   colorScheme={"teal"}
                   size={"sm"}
                   mr={4}
-                  leftIcon={<AddIcon />}
                 >
                   Register
                 </Button>{" "}

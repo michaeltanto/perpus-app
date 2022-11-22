@@ -9,9 +9,9 @@ server.use(express.json());
 server.use(cors());
 server.use(bearerToken());
 
-const {bookRouters, userRoutes} = require("./routers");
-const {userRouters} = require("./routers");
-const {adminRouters} = require("./routers")
+const {bookRouters, userRouters, adminRouters} = require("./routers");
+// const {userRouters} = require("./routers");
+// const {adminRouters} = require("./routers")
 
 server.use("/users", userRouters)
 server.use("/book", bookRouters);
