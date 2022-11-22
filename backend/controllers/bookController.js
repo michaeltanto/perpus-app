@@ -41,7 +41,8 @@ module.exports = {
             "Title",
             "Category",
             "Author",
-            
+            "Images",
+            "Synopsis"
         ],
       });
       res.status(200).send(users);
@@ -165,6 +166,75 @@ module.exports = {
     } catch (err) {
       console.log(err);
       res.status(400).send(err);
+    }
+  },
+  view2: async (req, res) => {
+    try {
+      const { page, limit, search_query, order, order_direction } = req.query;
+      const booklist_page = parseInt(page) || 0;
+      const list_limit = parseInt(limit) || 5;
+      const search = search_query || '';
+      const offset = list_limit * booklist_page;
+      const orderby = order || 'Title';
+      const direction = order_direction || 'ASC';
+      const totalRows = await book.count({
+        where: {
+          [Op.or]: [
+            {
+              Title: {
+                [Op.like]: '%' + search + '%',
+              },
+            },
+            {
+              Author: {
+                [Op.like]: '%' + search + '%',
+              },
+            },
+          ],
+        },
+      });
+      const totalPage = Math.ceil(totalRows / limit);
+      const result = await book.findAll({
+        // include: [
+        //   {
+        //     model: cart,
+        //     attributes: ["id", "UserNIM"],
+        //   }
+        // ],
+        where: {
+          [Op.or]: [
+            {
+              Title: {
+                [Op.like]: '%' + search + '%',
+              },
+            },
+            {
+              Author: {
+                [Op.like]: '%' + search + '%',
+              },
+            },
+          ],
+        },
+        offset: offset,
+        limit: list_limit,
+        order: [[orderby, direction]],
+        // include: [
+        //   {
+        //     model: cart,
+        //     attributes: ["id", "UserNIM"],
+        //   }
+        // ],
+      });
+
+      res.status(200).send({
+        result: result,
+        page: booklist_page,
+        limit: list_limit,
+        totalRows: totalRows,
+        totalPage: totalPage,
+      });
+    } catch (error) {
+      res.status(400).send(error);
     }
   },
 };
