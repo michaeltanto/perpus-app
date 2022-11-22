@@ -1,11 +1,11 @@
-import Nav from "../component/NavbarComp"
-import CarouselBar from "../component/CarouselBar"
+// import Nav from "../component/NavbarComp"
+// import CarouselBar from "../components/CarouselBar"
 
-export const LibraryPage=() => {
-    return (
-        <>
-            <Nav/>
-            <CarouselBar/>
-        </>
-    )
-}
+// export const LibraryPage=() => {
+//     return (
+//         <>
+//             <Nav/>
+//             <CarouselBar/>
+//         </>
+//     )
+// }

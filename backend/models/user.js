@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 const {
   Model
 } = require('sequelize');
@@ -17,7 +17,14 @@ module.exports = (sequelize, DataTypes) => {
     NIM: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique:true
+      unique:true,
+      validate: {
+        len: {
+        args: [5],
+        msg: "Your NIM should be 5 character"
+        }
+        
+      }
     },
     Username: {
       type: DataTypes.STRING,
@@ -32,6 +39,13 @@ module.exports = (sequelize, DataTypes) => {
     Password: {
       type: DataTypes.STRING,
       allowNull:false,
+      // validate: {
+      //       len: {
+      //         args: Password > [8],
+      //         msg: "Your password should be more 8 character"
+
+      //       }
+      // }
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,

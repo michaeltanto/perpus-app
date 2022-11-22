@@ -1,9 +1,9 @@
-import { Box, Center, IconButton, useBreakpointValue } from '@chakra-ui/react';
+import React from 'react';
+import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react';
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 // And react-slick as our Carousel Lib
 import Slider from 'react-slick';
-import { useState } from 'react';
 
 // Settings for the slider
 const settings = {
@@ -18,10 +18,10 @@ const settings = {
   slidesToScroll: 1,
 };
 
-export default function CarouselBar() {
+export default function Carousel() {
   // As we have used custom buttons, we need a reference variable to
   // change the state
-  const [slider, setSlider] = useState(null);
+  const [slider, setSlider] = React.useState<Slider;
 
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
@@ -30,22 +30,17 @@ export default function CarouselBar() {
 
   // These are the images used in the slide
   const cards = [
-    'https://www.perpusnas.go.id/webforms/images/AskLibrarian.jpg',
-    'https://www.perpusnas.go.id/webforms/images/Diseminasi_ilmu.jpg',
-    'https://www.perpusnas.go.id/webforms/images/ikonPPID-01.png'
+    'https://images.unsplash.com/photo-1612852098516-55d01c75769a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    'https://images.unsplash.com/photo-1627875764093-315831ac12f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    'https://images.unsplash.com/photo-1571432248690-7fd6980a1ae2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
   ];
 
   return (
-    <Center>
     <Box
-      mt="5"
-      display={{ base: "none", md: "block"}}
       position={'relative'}
-      height="ms"
-      width='90vw'
-      overflow={'hidden'}
-      justifyContent="center"
-    >
+      height={'600px'}
+      width={'full'}
+      overflow={'hidden'}>
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -99,6 +94,5 @@ export default function CarouselBar() {
         ))}
       </Slider>
     </Box>
-    </Center>
   );
 }

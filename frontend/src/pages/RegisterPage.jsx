@@ -16,20 +16,18 @@ import {
   AlertIcon
 } from '@chakra-ui/react';
 import Axios from "axios";
+// import {Link} from 'react-router-dom';
 const url = "http://localhost:2000/users/register";
 
+
 export const RegisterPage = () => {
-  const [show, setShow] = useState(false);
+  const [show] = useState(false);
 
   const registerSchema = Yup.object().shape({
     NIM: Yup.string().required().min(5,"NIM min 5 Character"),
     Password: Yup.string().required().min(8, "Password min 8 Character"),
     Username: Yup.string().required("username should be entered"),
     Email: Yup.string().email("email should be entered").required("email should be entered"),
-    Password_confirmation: Yup.string()
-
-    
-
   });
 
   const onRegister = async (data) => {
@@ -63,7 +61,7 @@ export const RegisterPage = () => {
         }}
         validationSchema={registerSchema}
         onSubmit={(values, action) => {
-          onRegister(values);
+        onRegister(values);
         console.log(values)
           action.setFieldValue("NIM", "");
           action.setFieldValue("Username", "");
@@ -131,7 +129,7 @@ export const RegisterPage = () => {
               <Checkbox>Remember me</Checkbox>
               <Link color={'blue.500'}>Forgot password?</Link>
             </Stack>
-            <Button colorScheme={'blue'} variant={'solid'} type="submit">
+            <Button  colorScheme={'teal'} variant={'solid'} type="submit">
               Sign up
             </Button>
           </Stack>
