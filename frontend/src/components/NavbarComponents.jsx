@@ -20,6 +20,8 @@ import { HamburgerIcon, CloseIcon, AddIcon } from '@chakra-ui/icons';
 import {Link} from 'react-router-dom';
 import { useSelector, useDispatch} from "react-redux";
 import { logout } from "../redux/userSlice";
+// import { useState } from 'react';
+import edo from "../edo.JPG"
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
@@ -38,9 +40,11 @@ const NavLink = ({ children }) => {
   }
 
 const NavbarComp = () => {
-const { isOpen, onOpen, onClose } = useDisclosure();
-const { NIM } = useSelector((state) => state.userSlice.value);
-const dispatch = useDispatch()
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { NIM } = useSelector((state) => state.userSlice.value);
+  const dispatch = useDispatch()
+  // const token = localStorage.getItem("token")
 
   const onLogout =  () => {
     
@@ -91,30 +95,13 @@ const dispatch = useDispatch()
             </HStack>
           </HStack>
           <Flex alignItems={'center'}>
-         <Box>
+        
           
-          </Box>
-            <Button
-              as={Link} to="/login"
-              variant={'solid'}
-              colorScheme={'teal'}
-              size={'sm'}
-              mr={4}
-              leftIcon={<AddIcon />}>
-              Login
-            </Button>
-            <Button
-            as={Link} to="/register"
-              variant={'solid'}
-              colorScheme={'teal'}
-              size={'sm'}
-              mr={4}
-              leftIcon={<AddIcon />}>
-              Register
-            </Button>
-
-            <Text >{NIM}</Text>
-           
+         
+          
+          {NIM ? 
+          <>
+          <Text >{NIM}</Text> 
             <Menu>
               <MenuButton
                 as={Button}
@@ -123,11 +110,13 @@ const dispatch = useDispatch()
                 cursor={'pointer'}
                 minW={0}>
                 <Avatar
-                  size={'sm'}
+                  size={'lg'}
                   src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop'
+                    edo
                   }
                 />
+          
+        
               </MenuButton>
               <MenuList>
                 <MenuItem>Profile</MenuItem>
@@ -138,6 +127,33 @@ const dispatch = useDispatch()
                 onClick={onLogout}>Logout</MenuItem>
               </MenuList>
             </Menu>
+            </>
+          
+          :
+          <>
+            <Button
+              as={Link} to="/login"
+              variant={'solid'}
+              colorScheme={'teal'}
+              size={'sm'}
+              mr={4}
+              // leftIcon={<AddIcon />}
+              >
+              Login
+            </Button>
+            <Button
+            as={Link} to="/register"
+              variant={'solid'}
+              colorScheme={'teal'}
+              size={'sm'}
+              mr={4}
+              // leftIcon={<AddIcon />}
+              >
+              Register
+            </Button>
+            </>
+}
+
           </Flex>
         </Flex>
 

@@ -35,9 +35,9 @@ export const LoginPage = () => {
         Password: Password.current.value,
         NIM: NIM.current.value,
       };
-      console.log(user);
+      // console.log(user);
       const result = await Axios.post(url, user);
-      console.log(result.NIM);
+      console.log(result.data);
 
       dispatch(login(result.data.user));
       localStorage.setItem("token", result.data.token);
