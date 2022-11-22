@@ -9,8 +9,9 @@ server.use(express.json());
 server.use(cors());
 server.use(bearerToken());
 
-const {bookRouters} = require("./routers");
+const {bookRouters, userRoutes} = require("./routers");
 
+server.use("/user", userRoutes);
 server.use("/book", bookRouters);
 
 server.listen(port, () => {

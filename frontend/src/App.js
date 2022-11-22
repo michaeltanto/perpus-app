@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import  {HomePage}  from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
@@ -6,10 +6,10 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { VerificationPage } from "./pages/VerificationPage";
 import  NavbarComp  from "./components/NavbarComponents";
 import Axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "./redux/userSlice";
 import { useEffect } from "react";
-import { LibraryPage } from "./pages/LibraryPage";
+import LargeWithLogoLeft from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,13 +19,13 @@ function App() {
 
   const keepLogin = async () => {
     try {
-      const res = await Axios.get(`http://localhost:2000/users/keepLogin`, {
+      const res = await Axios.get(`http://localhost:2000/user/keepLogin`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(res.NIM);
-      dispatch(login(res.NIM));
+      // console.log(res.NIM);
+      dispatch(login(res.data));
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +33,7 @@ function App() {
 
   useEffect(() => {
     keepLogin();
-  }, []);
+  }, );
 
   return (
     <div>
@@ -43,8 +43,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verification/:token" element={<VerificationPage />} />
-        <Route path="/" element={<LibraryPage />} />
       </Routes>
+      <LargeWithLogoLeft/>
     </div>
   );
 }

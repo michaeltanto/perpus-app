@@ -16,10 +16,10 @@ import {
   AlertIcon
 } from '@chakra-ui/react';
 import Axios from "axios";
-const url = "http://localhost:2000/users/register";
+const url = "http://localhost:2000/user/register";
 
 export const RegisterPage = () => {
-  const [show, setShow] = useState(false);
+  const [show] = useState(false);
 
   const registerSchema = Yup.object().shape({
     NIM: Yup.string().required().min(5,"NIM min 5 Character"),

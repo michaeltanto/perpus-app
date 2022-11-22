@@ -17,7 +17,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import { Navigate } from "react-router-dom";
 
-const url = "http://localhost:2000/users/login";
+const url = "http://localhost:2000/user/login";
 
 export const LoginPage = () => {
   // const router = useRouter
